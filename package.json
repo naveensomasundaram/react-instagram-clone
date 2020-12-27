@@ -1,0 +1,36 @@
+{
+  "name": "instagram-clone",
+  "version": "4.0.0",
+  "private": true,
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "deploy": "npm run build; firebase deploy"
+  },
+  "dependencies": {
+    "@material-ui/core": "^4.11.2",
+    "@material-ui/icons": "^4.11.2",
+    "clsx": "latest",
+    "firebase": "^8.2.1",
+    "firebase-tools": "^9.1.0",
+    "node": "^15.4.0",
+    "react": "latest",
+    "react-dom": "latest",
+    "react-instagram-embed": "^2.0.0",
+    "react-scripts": "latest"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
