@@ -1,6 +1,6 @@
 import react, { useState, useEffect } from 'react';
 import Post from './Post';
-import { auth, db, storage } from './firebase';
+import { auth, db, storage, provider } from './firebase';
 import InstaSignUpModal from './InstaSignUpModal';
 import InstaSignInModal from './InstaSignInModal';
 import Button from '@material-ui/core/Button';
@@ -76,10 +76,34 @@ function App() {
         handleSignUpModalClose();
     }
 
+    const handleGoogleSignUp = (event) => {
+        event.preventDefault();
+        auth.signInWithPopup(provider).then(function(authUser) {
+            var token = authUser.credential.accessToken;
+            var user = authUser.user;
+        })
+        .catch(function(error) {
+            alert(error.message);
+        });
+        handleSignUpModalClose();
+    }
+
     const handleInstaSignIn = (event, signInDetails) => {
         event.preventDefault();
         auth.signInWithEmailAndPassword(signInDetails.emailAddress, signInDetails.password)
         .catch((error) => { alert(error.message)});
+        handleSignInModalClose();
+    }
+
+    const handleGoogleSignIn = (event) => {
+        event.preventDefault();
+        auth.signInWithPopup(provider).then(function(result) {
+            var token = result.credential.accessToken;
+            var user = result.user;
+        })
+        .catch(function(error) {
+            alert(error.message);
+        });
         handleSignInModalClose();
     }
 
@@ -132,13 +156,15 @@ function App() {
             open={showSignUpModal} 
             handleOpen={handleSignUpModalOpen} 
             handleClose={handleSignUpModalClose}
-            handleInstaSignUp={handleInstaSignUp}/>
+            handleInstaSignUp={handleInstaSignUp}
+            handleGoogleSignUp={handleGoogleSignUp}/>
         
         <InstaSignInModal 
             open={showSignInModal}
             handleOpen={handleSignInModalOpen}
             handleClose={handleSignInModalClose}
             handleInstaSignIn={handleInstaSignIn}
+            handleGoogleSignIn={handleGoogleSignIn}
             />
 
         <InstaImageUpload 

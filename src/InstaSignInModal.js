@@ -43,6 +43,7 @@ export default function InstaSignInModal(props) {
   const handleOpen = () => { props.handleOpen(); };
   const handleClose = () => { props.handleClose(); };
   const handleSignIn = (event) => { props.handleInstaSignIn(event, {password, emailAddress}); }
+  const handleGoogleSignIn = (event) => { props.handleGoogleSignIn(event); }
 
   const body = (
     <div style={modalStyle} className={classes.paper}>
@@ -56,7 +57,12 @@ export default function InstaSignInModal(props) {
           <br/><br/>
           <TextField id="insta-password" label="Password" type="password" variant="outlined" Complete="current-password" placeholder="password" value={password} onChange={event => setPassword(event.target.value)}/>
           <br/><br/>
-          <Button variant="contained" onClick={event => handleSignIn(event)} color="primary" type="submit"> Sign In </Button> &nbsp;&nbsp;&nbsp;
+
+          <Button variant="contained" color="secondary" onClick={event => handleGoogleSignIn(event)}> Sign in with Gooogle </Button>
+          <br/><br/>
+
+          <Button variant="contained" onClick={event => handleSignIn(event)} color="primary" type="submit"> Sign In </Button> &nbsp;&nbsp;&nbsp;         
+
           <Button variant="contained" onClick={handleClose}>Cancel</Button>
         </form>
 
